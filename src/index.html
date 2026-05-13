@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeylandAI OS</title>
+  <link rel="stylesheet" href="/theme.css">
+</head>
+<body>
+  <!-- Canvas for blackhole background animation -->
+  <canvas id="blackhole-canvas"></canvas>
+
+  <!-- Main overlay container -->
+  <div id="overlay">
+    <!-- Login screen (OS-login) -->
+    <div id="os-login" class="os-login-container">
+      <div class="login-box">
+        <h1>WEYLANDAI OS</h1>
+        <div id="login-error" class="login-error"></div>
+        <input type="email" id="login-email" placeholder="Email" autocomplete="off">
+        <input type="password" id="login-password" placeholder="Password" autocomplete="off">
+        <button id="login-btn">SIGN IN</button>
+        <div class="login-footer">
+          <a href="https://authfor.com/reset" target="_blank">Forgot password?</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terminal dock (hidden until authenticated) -->
+    <div id="term-dock" class="term-dock">
+      <div id="term-dock-header" class="term-dock-header">
+        <div class="dock-title">MASCOM v5</div>
+        <div id="ws-status" class="ws-status">offline</div>
+      </div>
+      <div id="term-dock-body" class="term-dock-body"></div>
+      <div id="hal-taskbar" class="hal-taskbar">HAL: offline</div>
+    </div>
+  </div>
+
+  <!-- Mobile view sections (pricing, ventures, etc.) -->
+  <section id="pricing" style="max-width:1100px;margin:0 auto 60px;padding:40px 20px;text-align:center;">
+    <!-- Pricing content populated by JavaScript -->
+  </section>
+
+  <!-- External SDKs (third-party) -->
+  <script src="https://vendyai.com/sdk/v1/nerve.js" defer></script>
+  <script src="https://mailguyai.com/sdk/v1/mailguyai.min.js" defer></script>
+  <script src="https://vendyai.com/sdk/v1/vendyai.min.js" defer></script>
+  <script src="https://mobleysoft.com/sdk/v1/pados.min.js" defer></script>
+  <script src="https://mobleysoft.com/sdk/v1/gameworld.min.js" defer></script>
+  <script src="https://mobleysoft.com/hal-sdk.js" defer></script>
+
+  <!-- MASCOM Modules (modular architecture) -->
+  <script src="/authfor-integration-standard.js"></script>
+  <script src="/founder-console.js" defer></script>
+  <script src="/main.js" defer></script>
+
+  <!-- Blackhole canvas animation (background) -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('blackhole-canvas');
+      const ctx = canvas.getContext('2d');
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      let time = 0;
+      function animate() {
+        ctx.fillStyle = 'rgba(4, 4, 10, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Create blackhole effect with concentric circles
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        for (let i = 0; i < 20; i++) {
+          const radius = 50 + i * 60 + Math.sin(time * 0.001 + i) * 20;
+          ctx.strokeStyle = `rgba(240, 184, 0, ${0.05 - i * 0.002})`;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        time++;
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+  </script>
+</body>
+</html>

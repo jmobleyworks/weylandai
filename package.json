@@ -1,0 +1,10 @@
+{
+  "name": "website-weylandai-com",
+  "version": "1.0.0",
+  "description": "Website for weylandai.com",
+  "scripts": {
+    "build": "mkdir -p dist && cp -r src/* dist/ 2>/dev/null || true",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  }
+}
