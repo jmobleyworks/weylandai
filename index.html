@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Weyland — Submittals and takeoffs in minutes, not days</title>
+<meta name="description" content="Weyland turns days of construction submittal, takeoff, and proposal work into minutes. Upload your plans, get a finished document. First 5 work products free.">
+<meta name="theme-color" content="#0a0a0f">
+<style>
+:root{
+  --bg:#0a0a0f; --panel:#12121a; --ink:#f2f0ea; --dim:rgba(242,240,234,0.66); --faint:rgba(242,240,234,0.4);
+  --gold:#e8b23a; --goldd:#c8952a; --line:rgba(242,240,234,0.1); --good:#4ec9a0;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.btn{display:inline-block;background:var(--gold);color:#1a1206;font-weight:700;padding:15px 26px;border-radius:10px;
+  font-size:15px;border:none;cursor:pointer;transition:transform .12s,background .12s}
+.btn:hover{background:var(--goldd);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{background:rgba(255,255,255,0.04)}
+nav{position:sticky;top:0;z-index:20;background:rgba(10,10,15,0.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;letter-spacing:-.01em;font-size:19px}
+.logo b{color:var(--gold)}
+.navlinks{display:flex;gap:28px;align-items:center;font-size:14px;color:var(--dim)}
+.navlinks a:hover{color:var(--ink)}
+@media(max-width:720px){.navlinks a:not(.btn){display:none}}
+.hero{padding:clamp(64px,11vw,140px) 0 clamp(48px,7vw,84px);text-align:center}
+.kick{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:20px}
+h1{font-size:clamp(40px,7vw,76px);line-height:1.02;letter-spacing:-.025em;font-weight:800}
+h1 .g{color:var(--gold)}
+.hero p.lede{font-size:clamp(18px,2.3vw,23px);color:var(--dim);max-width:40ch;margin:24px auto 34px}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
+.cta-note{font-size:13px;color:var(--faint);margin-top:16px}
+section{padding:clamp(52px,8vw,92px) 0}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+h2{font-size:clamp(28px,4vw,42px);line-height:1.1;letter-spacing:-.02em;font-weight:800;max-width:18ch}
+.sec-lede{color:var(--dim);font-size:clamp(16px,1.8vw,19px);max-width:52ch;margin-top:16px}
+.band{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band .wrap{display:flex;flex-wrap:wrap;gap:clamp(24px,6vw,72px);justify-content:center;text-align:center;padding:clamp(40px,6vw,64px) 24px}
+.stat .n{font-size:clamp(32px,5vw,52px);font-weight:800;color:var(--gold);letter-spacing:-.02em}
+.stat .l{font-size:14px;color:var(--dim);margin-top:6px;max-width:20ch}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:44px}
+.step{border:1px solid var(--line);border-radius:14px;padding:28px;background:var(--panel)}
+.step .num{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:.1em}
+.step h3{font-size:20px;margin:12px 0 8px;font-weight:700}
+.step p{color:var(--dim);font-size:15px}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:44px}
+.tool{border:1px solid var(--line);border-radius:14px;padding:28px;background:var(--panel);display:flex;flex-direction:column}
+.tool .h{font-weight:800;font-size:19px}
+.tool .h b{color:var(--gold);font-weight:800}
+.tool p{color:var(--dim);font-size:15px;margin-top:10px;flex:1}
+.tool .out{font-size:13px;color:var(--faint);margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+.price{background:linear-gradient(180deg,rgba(232,178,58,0.07),transparent 70%)}
+.pricecard{max-width:620px;margin:40px auto 0;border:1px solid rgba(232,178,58,0.35);border-radius:18px;padding:clamp(32px,5vw,48px);
+  background:var(--panel);text-align:center}
+.pricecard .free{font-size:clamp(30px,4.4vw,46px);font-weight:800;letter-spacing:-.02em}
+.pricecard .free .g{color:var(--gold)}
+.pricecard .then{color:var(--dim);margin:12px 0 6px;font-size:17px}
+.pricecard ul{list-style:none;display:inline-flex;flex-direction:column;gap:10px;text-align:left;margin:26px 0 30px}
+.pricecard li{color:var(--dim);font-size:15px;padding-left:28px;position:relative}
+.pricecard li::before{content:"\2713";position:absolute;left:0;color:var(--good);font-weight:800}
+.proof .wrap{border:1px solid var(--line);border-radius:16px;padding:clamp(28px,5vw,44px);background:var(--panel)}
+.proof .quote{font-size:clamp(20px,2.6vw,28px);font-weight:600;letter-spacing:-.01em;max-width:24ch}
+.proof .who{color:var(--faint);font-size:14px;margin-top:18px;letter-spacing:.02em}
+.signup{text-align:center}
+.form{display:flex;gap:12px;max-width:480px;margin:28px auto 0;flex-wrap:wrap;justify-content:center}
+.form input{flex:1;min-width:220px;background:var(--panel);border:1px solid var(--line);color:var(--ink);
+  padding:15px 16px;border-radius:10px;font-size:15px;font-family:var(--sans);outline:none}
+.form input:focus{border-color:rgba(232,178,58,0.5)}
+.formmsg{font-size:14px;color:var(--good);min-height:1.2em;margin-top:14px}
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--faint);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+footer b{color:var(--dim)}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <div class="logo"><b>Weyland</b></div>
+  <div class="navlinks">
+    <a href="#how">How it works</a>
+    <a href="#tools">Tools</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#start" class="btn" style="padding:9px 18px;font-size:14px">Start free</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="kick">Document automation for construction</div>
+  <h1>Submittals in minutes.<br><span class="g">Not days.</span></h1>
+  <p class="lede">Weyland reads your plans and produces the submittals, takeoffs, and proposals that used to eat a skilled estimator's week — in minutes.</p>
+  <div class="cta-row">
+    <a href="#start" class="btn">Start with 5 free work products</a>
+    <a href="#how" class="btn ghost">See how it works</a>
+  </div>
+  <div class="cta-note">No credit card. Your first 5 are on us.</div>
+</div></header>
+
+<div class="band"><div class="wrap">
+  <div class="stat"><div class="n">8&ndash;24 hrs</div><div class="l">of estimator time per submittal, by hand</div></div>
+  <div class="stat"><div class="n">minutes</div><div class="l">with Weyland &mdash; same document, same quality</div></div>
+  <div class="stat"><div class="n">$7,200</div><div class="l">of skilled labor reclaimed, per submittal</div></div>
+</div></div>
+
+<section id="how"><div class="wrap">
+  <div class="eyebrow">How it works</div>
+  <h2>Three steps. No new software to learn.</h2>
+  <div class="steps">
+    <div class="step"><div class="num">01</div><h3>Upload your plans</h3><p>Drop in the drawings and specs you already have. PDFs, schedules, spec sections &mdash; whatever the job came with.</p></div>
+    <div class="step"><div class="num">02</div><h3>Weyland does the work</h3><p>It reads the documents, pulls the hardware and quantities, and assembles the submittal, takeoff, or proposal &mdash; formatted and ready.</p></div>
+    <div class="step"><div class="num">03</div><h3>Review and send</h3><p>You check it &mdash; the part that actually needs your expertise &mdash; and send. Minutes of review instead of a day of production.</p></div>
+  </div>
+</div></section>
+
+<section id="tools" class="band"><div class="wrap" style="padding-top:clamp(52px,8vw,92px);padding-bottom:clamp(52px,8vw,92px)">
+  <div class="eyebrow">The tools</div>
+  <h2>One platform. The documents that slow you down.</h2>
+  <div class="tools">
+    <div class="tool"><div class="h"><b>Submittal</b> Express</div><p>Hardware submittals and product-data packages built straight from the spec and schedule.</p><div class="out">Output: submittal package, cover sheet, cut sheets</div></div>
+    <div class="tool"><div class="h"><b>TakeOff</b> Express</div><p>Quantity takeoffs from the drawings &mdash; counts, lengths, and areas without the manual tally.</p><div class="out">Output: quantity-takeoff binder</div></div>
+    <div class="tool"><div class="h"><b>Proposal</b> Express</div><p>Client-ready proposals assembled from your scope, pricing, and the job documents.</p><div class="out">Output: formatted proposal + transmittal</div></div>
+  </div>
+</div></section>
+
+<section id="pricing" class="price"><div class="wrap">
+  <div style="text-align:center">
+    <div class="eyebrow">Pricing</div>
+    <h2 style="margin:0 auto">Try it on real jobs, free.</h2>
+    <p class="sec-lede" style="margin:16px auto 0">Get 5 free work products from each tool &mdash; full quality, on real work. Pay only when it's saving you time.</p>
+  </div>
+  <div class="pricecard">
+    <div class="free"><span class="g">5 free</span> work products, per tool</div>
+    <div class="then">then <b style="color:var(--ink)">$2,000/month</b> &mdash; unlimited</div>
+    <ul>
+      <li>No credit card to start</li>
+      <li>Full-quality output you can use on live jobs</li>
+      <li>Every tool &mdash; Submittal, TakeOff, Proposal</li>
+      <li>Half the cost of hardware-bound tools like Emullion</li>
+    </ul>
+    <div><a href="#start" class="btn">Start free</a></div>
+  </div>
+</div></section>
+
+<section class="proof"><div class="wrap">
+  <div class="eyebrow">Proof</div>
+  <div class="quote">"A standard submittal used to take a full day &mdash; one to three for complex jobs. Weyland does it in minutes."</div>
+  <div class="who">Precision Auto Doors &middot; construction &middot; design partner, 2025</div>
+</div></section>
+
+<section id="start" class="signup"><div class="wrap">
+  <div class="eyebrow">Get started</div>
+  <h2 style="margin:0 auto">Your first 5 work products are on us.</h2>
+  <p class="sec-lede" style="margin:16px auto 0">Drop your email and we'll set you up. No credit card, no commitment.</p>
+  <form class="form" id="signup-form">
+    <input type="email" id="email" placeholder="you@yourfirm.com" autocomplete="email" required>
+    <button type="submit" class="btn">Start free &rarr;</button>
+  </form>
+  <div class="formmsg" id="formmsg"></div>
+</div></section>
+
+<footer><div class="wrap">
+  <div>Weyland &middot; a <b>Mobley Helms Systems</b> product</div>
+  <div><a href="mailto:hello@weylandai.com">hello@weylandai.com</a></div>
+</div></footer>
+
+<script>
+// Early-access capture. Self-serve generation is rolling out to design partners; this opens a mailto
+// so a real person gets set up. Swap for a real signup endpoint when the product is live.
+(function(){
+  var f=document.getElementById('signup-form'), e=document.getElementById('email'), m=document.getElementById('formmsg');
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var v=(e.value||'').trim();
+    if(!v||v.indexOf('@')<1){m.style.color='#e8b23a';m.textContent='Enter a valid email.';return;}
+    var subj=encodeURIComponent('Weyland - start my 5 free work products');
+    var body=encodeURIComponent('Please set me up with Weyland. Email: '+v);
+    window.location.href='mailto:hello@weylandai.com?subject='+subj+'&body='+body;
+    m.style.color='#4ec9a0';m.textContent="Opening your email - send it and we'll get you set up.";
+  });
+})();
+</script>
+</body>
+</html>

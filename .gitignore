@@ -1,0 +1,5 @@
+# Publish only the site. Keep the local apparatus (74_PRODUCTS*, *.mosmil, backups, dotfiles) private.
+*
+!index.html
+!CNAME
+!.gitignore
