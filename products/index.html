@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEYLAND AI | 72 SOVEREIGN ARCHITECTURES</title>
+    <style>
+        :root {
+            --w-red: #ff3333;
+            --w-dark: #050505;
+            --w-glass: rgba(15, 15, 15, 0.7);
+            --w-glass-hover: rgba(30, 30, 30, 0.9);
+            --text-glow: 0 0 10px rgba(255, 51, 51, 0.6);
+            --border-glow: 0 0 15px rgba(255, 51, 51, 0.4);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--w-dark);
+            color: #fff;
+            font-family: "SF Pro Display", -apple-system, sans-serif;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at center, rgba(30,0,0,0.4) 0%, transparent 100%),
+                              repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,51,51,0.02) 2px, rgba(255,51,51,0.02) 4px);
+        }
+        header {
+            padding: 40px 60px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255,51,51,0.2);
+            background: rgba(5,5,5,0.8); backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .w-logo {
+            font-size: 2.5rem; font-weight: 900; color: var(--w-red); 
+            line-height: 1; letter-spacing: -0.05em; text-shadow: var(--text-glow);
+        }
+        .header-title { font-size: 1rem; letter-spacing: 0.3em; color: #888; text-transform: uppercase; }
+        .stats-bar { display: flex; gap: 30px; font-family: monospace; font-size: 0.85rem; color: #00ccff; }
+        main { padding: 60px; max-width: 1600px; margin: 0 auto; }
+        .catalog-header { margin-bottom: 60px; }
+        .catalog-header h1 { font-size: 3.5rem; margin: 0 0 10px 0; letter-spacing: 0.1em; text-transform: uppercase;}
+        .catalog-header p { color: #888; font-size: 1.1rem; max-width: 600px; line-height: 1.6; }
+        .product-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px;
+        }
+        .product-card {
+            background: var(--w-glass); border: 1px solid rgba(255,51,51,0.1);
+            border-left: 3px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 4px;
+            backdrop-filter: blur(15px); transition: all 0.3s ease; position: relative;
+            cursor: pointer; display: flex; flex-direction: column; text-decoration: none; color: white;
+        }
+        .product-card:hover {
+            background: var(--w-glass-hover); border-color: rgba(255,51,51,0.4);
+            border-left-color: var(--w-red); box-shadow: var(--border-glow); transform: translateY(-5px);
+        }
+        .p-title { font-size: 1.2rem; margin: 0 0 15px 0; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+        .p-meta {
+            margin-top: auto; display: flex; justify-content: space-between;
+            border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px;
+            font-family: monospace; font-size: 0.75rem; color: #666;
+        }
+        .status-indicator {
+            display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+            background: #00ccff; margin-right: 6px; box-shadow: 0 0 8px #00ccff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="w-logo">W</div>
+        <div class="header-title">THE 72 SOVEREIGN ARCHITECTURES</div>
+        <div class="stats-bar">
+            <span>SYS.OK</span>
+            <span>UPLINK: SECURE</span>
+        </div>
+    </header>
+    <main>
+        <div class="catalog-header">
+            <h1>THE 72 PRODUCTS</h1>
+            <p>Weyland AI Sovereign Infrastructure Portfolio. Physical architectures ready for bare-metal deployment.</p>
+        </div>
+        <div class="product-grid">
+
+            <a href="/archx" class="product-card">
+                <h3 class="p-title">ARCHX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1001</span>
+                </div>
+            </a>
+    
+            <a href="/arx" class="product-card">
+                <h3 class="p-title">ARX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1002</span>
+                </div>
+            </a>
+    
+            <a href="/assetx" class="product-card">
+                <h3 class="p-title">ASSETX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1003</span>
+                </div>
+            </a>
+    
+            <a href="/auditx" class="product-card">
+                <h3 class="p-title">AUDITX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1004</span>
+                </div>
+            </a>
+    
+            <a href="/automation_core" class="product-card">
+                <h3 class="p-title">AUTOMATION CORE</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1005</span>
+                </div>
+            </a>
+    
+            <a href="/bishop" class="product-card">
+                <h3 class="p-title">BISHOP</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1006</span>
+                </div>
+            </a>
+    
+            <a href="/brit" class="product-card">
+                <h3 class="p-title">BRIT</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1007</span>
+                </div>
+            </a>
+    
+            <a href="/catalogx" class="product-card">
+                <h3 class="p-title">CATALOGX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1008</span>
+                </div>
+            </a>
+    
+            <a href="/chainx" class="product-card">
+                <h3 class="p-title">CHAINX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1009</span>
+                </div>
+            </a>
+    
+            <a href="/chen" class="product-card">
+                <h3 class="p-title">CHEN</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1010</span>
+                </div>
+            </a>
+    
+            <a href="/commissionx" class="product-card">
+                <h3 class="p-title">COMMISSIONX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1011</span>
+                </div>
+            </a>
+    
+            <a href="/company_matrix" class="product-card">
+                <h3 class="p-title">COMPANY MATRIX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1012</span>
+                </div>
+            </a>
+    
+            <a href="/construction_engine" class="product-card">
+                <h3 class="p-title">CONSTRUCTION ENGINE</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1013</span>
+                </div>
+            </a>
+    
+            <a href="/corpx" class="product-card">
+                <h3 class="p-title">CORPX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1014</span>
+                </div>
+            </a>
+    
+            <a href="/crewx" class="product-card">
+                <h3 class="p-title">CREWX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1015</span>
+                </div>
+            </a>
+    
+            <a href="/cryptox" class="product-card">
+                <h3 class="p-title">CRYPTOX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1016</span>
+                </div>
+            </a>
+    
+            <a href="/david" class="product-card">
+                <h3 class="p-title">DAVID</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1017</span>
+                </div>
+            </a>
+    
+            <a href="/dispatchx" class="product-card">
+                <h3 class="p-title">DISPATCHX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1018</span>
+                </div>
+            </a>
+    
+            <a href="/distributionx" class="product-card">
+                <h3 class="p-title">DISTRIBUTIONX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1019</span>
+                </div>
+            </a>
+    
+            <a href="/drillx" class="product-card">
+                <h3 class="p-title">DRILLX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1020</span>
+                </div>
+            </a>
+    
+            <a href="/enterprise" class="product-card">
+                <h3 class="p-title">ENTERPRISE</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1021</span>
+                </div>
+            </a>
+    
+            <a href="/estimatex" class="product-card">
+                <h3 class="p-title">ESTIMATEX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1022</span>
+                </div>
+            </a>
+    
+            <a href="/extractorx" class="product-card">
+                <h3 class="p-title">EXTRACTORX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1023</span>
+                </div>
+            </a>
+    
+            <a href="/fieldx" class="product-card">
+                <h3 class="p-title">FIELDX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1024</span>
+                </div>
+            </a>
+    
+            <a href="/flowx" class="product-card">
+                <h3 class="p-title">FLOWX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1025</span>
+                </div>
+            </a>
+    
+            <a href="/gigi" class="product-card">
+                <h3 class="p-title">GIGI</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1026</span>
+                </div>
+            </a>
+    
+            <a href="/graphx" class="product-card">
+                <h3 class="p-title">GRAPHX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1027</span>
+                </div>
+            </a>
+    
+            <a href="/gridx" class="product-card">
+                <h3 class="p-title">GRIDX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1028</span>
+                </div>
+            </a>
+    
+            <a href="/hashx" class="product-card">
+                <h3 class="p-title">HASHX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1029</span>
+                </div>
+            </a>
+    
+            <a href="/hazmatx" class="product-card">
+                <h3 class="p-title">HAZMATX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1030</span>
+                </div>
+            </a>
+    
+            <a href="/huntx" class="product-card">
+                <h3 class="p-title">HUNTX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1031</span>
+                </div>
+            </a>
+    
+            <a href="/inspectx" class="product-card">
+                <h3 class="p-title">INSPECTX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1032</span>
+                </div>
+            </a>
+    
+            <a href="/inventoryx" class="product-card">
+                <h3 class="p-title">INVENTORYX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1033</span>
+                </div>
+            </a>
+    
+            <a href="/leadx" class="product-card">
+                <h3 class="p-title">LEADX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1034</span>
+                </div>
+            </a>
+    
+            <a href="/logisticsx" class="product-card">
+                <h3 class="p-title">LOGISTICSX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1035</span>
+                </div>
+            </a>
+    
+            <a href="/maintx" class="product-card">
+                <h3 class="p-title">MAINTX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1036</span>
+                </div>
+            </a>
+    
+            <a href="/meetingx" class="product-card">
+                <h3 class="p-title">MEETINGX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1037</span>
+                </div>
+            </a>
+    
+            <a href="/mesx" class="product-card">
+                <h3 class="p-title">MESX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1038</span>
+                </div>
+            </a>
+    
+            <a href="/mosmx" class="product-card">
+                <h3 class="p-title">MOSMX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1039</span>
+                </div>
+            </a>
+    
+            <a href="/mother" class="product-card">
+                <h3 class="p-title">MOTHER</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1040</span>
+                </div>
+            </a>
+    
+            <a href="/multivac" class="product-card">
+                <h3 class="p-title">MULTIVAC</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1041</span>
+                </div>
+            </a>
+    
+            <a href="/nova" class="product-card">
+                <h3 class="p-title">NOVA</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1042</span>
+                </div>
+            </a>
+    
+            <a href="/overwatchx" class="product-card">
+                <h3 class="p-title">OVERWATCHX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1043</span>
+                </div>
+            </a>
+    
+            <a href="/permitx" class="product-card">
+                <h3 class="p-title">PERMITX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1044</span>
+                </div>
+            </a>
+    
+            <a href="/plantx" class="product-card">
+                <h3 class="p-title">PLANTX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1045</span>
+                </div>
+            </a>
+    
+            <a href="/planx" class="product-card">
+                <h3 class="p-title">PLANX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1046</span>
+                </div>
+            </a>
+    
+            <a href="/platformx" class="product-card">
+                <h3 class="p-title">PLATFORMX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1047</span>
+                </div>
+            </a>
+    
+            <a href="/pricex" class="product-card">
+                <h3 class="p-title">PRICEX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1048</span>
+                </div>
+            </a>
+    
+            <a href="/projectx" class="product-card">
+                <h3 class="p-title">PROJECTX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1049</span>
+                </div>
+            </a>
+    
+            <a href="/prometheus" class="product-card">
+                <h3 class="p-title">PROMETHEUS</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1050</span>
+                </div>
+            </a>
+    
+            <a href="/propx" class="product-card">
+                <h3 class="p-title">PROPX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1051</span>
+                </div>
+            </a>
+    
+            <a href="/qtext" class="product-card">
+                <h3 class="p-title">QTEXT</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1052</span>
+                </div>
+            </a>
+    
+            <a href="/qualityx" class="product-card">
+                <h3 class="p-title">QUALITYX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1053</span>
+                </div>
+            </a>
+    
+            <a href="/reservoirx" class="product-card">
+                <h3 class="p-title">RESERVOIRX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1054</span>
+                </div>
+            </a>
+    
+            <a href="/rigx" class="product-card">
+                <h3 class="p-title">RIGX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1055</span>
+                </div>
+            </a>
+    
+            <a href="/ripley" class="product-card">
+                <h3 class="p-title">RIPLEY</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1056</span>
+                </div>
+            </a>
+    
+            <a href="/robotics_hub" class="product-card">
+                <h3 class="p-title">ROBOTICS HUB</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1057</span>
+                </div>
+            </a>
+    
+            <a href="/safetyx" class="product-card">
+                <h3 class="p-title">SAFETYX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1058</span>
+                </div>
+            </a>
+    
+            <a href="/salesx" class="product-card">
+                <h3 class="p-title">SALESX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1059</span>
+                </div>
+            </a>
+    
+            <a href="/satx" class="product-card">
+                <h3 class="p-title">SATX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1060</span>
+                </div>
+            </a>
+    
+            <a href="/scadax" class="product-card">
+                <h3 class="p-title">SCADAX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1061</span>
+                </div>
+            </a>
+    
+            <a href="/sentinelx" class="product-card">
+                <h3 class="p-title">SENTINELX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1062</span>
+                </div>
+            </a>
+    
+            <a href="/sightx" class="product-card">
+                <h3 class="p-title">SIGHTX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1063</span>
+                </div>
+            </a>
+    
+            <a href="/signalx" class="product-card">
+                <h3 class="p-title">SIGNALX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1064</span>
+                </div>
+            </a>
+    
+            <a href="/sourcex" class="product-card">
+                <h3 class="p-title">SOURCEX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1065</span>
+                </div>
+            </a>
+    
+            <a href="/stormx" class="product-card">
+                <h3 class="p-title">STORMX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1066</span>
+                </div>
+            </a>
+    
+            <a href="/subx" class="product-card">
+                <h3 class="p-title">SUBX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1067</span>
+                </div>
+            </a>
+    
+            <a href="/t3clx" class="product-card">
+                <h3 class="p-title">T3CLX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1068</span>
+                </div>
+            </a>
+    
+            <a href="/takeoffx" class="product-card">
+                <h3 class="p-title">TAKEOFFX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1069</span>
+                </div>
+            </a>
+    
+            <a href="/treatx" class="product-card">
+                <h3 class="p-title">TREATX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1070</span>
+                </div>
+            </a>
+    
+            <a href="/turbinex" class="product-card">
+                <h3 class="p-title">TURBINEX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1071</span>
+                </div>
+            </a>
+    
+            <a href="/utilityx" class="product-card">
+                <h3 class="p-title">UTILITYX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1072</span>
+                </div>
+            </a>
+    
+            <a href="/vaultx" class="product-card">
+                <h3 class="p-title">VAULTX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1073</span>
+                </div>
+            </a>
+    
+            <a href="/venturex" class="product-card">
+                <h3 class="p-title">VENTUREX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1074</span>
+                </div>
+            </a>
+    
+            <a href="/wellx" class="product-card">
+                <h3 class="p-title">WELLX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1075</span>
+                </div>
+            </a>
+    
+            <a href="/workx" class="product-card">
+                <h3 class="p-title">WORKX</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1076</span>
+                </div>
+            </a>
+    
+            <a href="/wright" class="product-card">
+                <h3 class="p-title">WRIGHT</h3>
+                <div class="p-meta">
+                    <span><i class="status-indicator"></i>ONLINE</span>
+                    <span>WY-1077</span>
+                </div>
+            </a>
+    
+        </div>
+    </main>
+</body>
+</html>

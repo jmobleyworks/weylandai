@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEYLANDAI.COM | Sovereign Edge Node</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        
+:root {
+    --bg-color: #050507;
+    --glass-bg: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --primary-glow: #ffffff;
+    --text-primary: #ededed;
+    --text-secondary: #888888;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Dynamic ambient gradient background */
+.ambient-mesh {
+    position: absolute;
+    width: 200vw;
+    height: 200vh;
+    background: radial-gradient(circle at 50% 50%, rgba(166, 61, 165, 0.08) 0%, transparent 50%);
+    animation: rotate 20s linear infinite;
+    z-index: 0;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg) translate(-5%, -5%); }
+    50% { transform: rotate(180deg) translate(5%, 5%); }
+    100% { transform: rotate(360deg) translate(-5%, -5%); }
+}
+
+.glass-container {
+    position: relative;
+    z-index: 10;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 3rem;
+    max-width: 800px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeUp {
+    to { transform: translateY(0); opacity: 1; }
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p.description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.terminal-block {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: #4ade80;
+    position: relative;
+    overflow: hidden;
+}
+
+.terminal-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(166, 61, 165, 0.8), transparent);
+    animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 10px #4ade80;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; box-shadow: 0 0 10px #4ade80; }
+    50% { opacity: 0.4; box-shadow: 0 0 2px #4ade80; }
+    100% { opacity: 1; box-shadow: 0 0 10px #4ade80; }
+}
+
+    </style>
+</head>
+<body>
+    <div class="ambient-mesh"></div>
+    <div class="glass-container">
+        <h1>WEYLANDAI.COM</h1>
+        <p class="description">Sovereign biological-synthetic node for weylandai.com. Powered by the Tier 1 Mac cluster.</p>
+        
+        <div class="terminal-block">
+            <span class="status-indicator"></span><span id="api-status">Initializing cognitive router...</span>
+            <br><br>
+            <span style="color: #666;">$ sys.node.connect()</span>
+            <br>
+            <span id="api-output" style="color: #fff;"></span>
+        </div>
+    </div>
+
+    <script>
+        // Simulate or perform real API fetch to the local proxy
+        async function connectNode() {
+            const statusEl = document.getElementById('api-status');
+            const outputEl = document.getElementById('api-output');
+            
+            try {
+                // Hitting the local Nginx proxy endpoint mapped to orchestrator_reverse_proxy.py
+                const res = await fetch('/api/sovereign/ping', { timeout: 3000 });
+                if(res.ok) {
+                    const data = await res.json();
+                    statusEl.innerText = "LLM Proxy Connected (Tier 1 Mac)";
+                    statusEl.style.color = "#4ade80";
+                    outputEl.innerText = "> " + data.message + "\n> Neural Mesh Active.";
+                } else {
+                    throw new Error("Local LLM timeout");
+                }
+            } catch (e) {
+                // Graceful degradation
+                statusEl.innerText = "Autonomous Mode Active";
+                statusEl.style.color = "#fbbf24";
+                document.querySelector('.status-indicator').style.background = "#fbbf24";
+                document.querySelector('.status-indicator').style.boxShadow = "0 0 10px #fbbf24";
+                outputEl.innerText = "> Bare-metal node standing by.\n> Awaiting cognitive ingress.";
+            }
+        }
+        
+        setTimeout(connectNode, 800);
+    </script>
+</body>
+</html>

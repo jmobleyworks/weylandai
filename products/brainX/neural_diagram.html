@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEYLAND AI | BrainX Neural Architecture</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        :root {
+            --w-red: #ff3333;
+            --w-cyan: #00ccff;
+            --w-dark: #050505;
+        }
+        body {
+            margin: 0; padding: 0; background-color: var(--w-dark);
+            color: #fff; font-family: "SF Pro Display", monospace, sans-serif;
+            overflow: hidden;
+            background-image: radial-gradient(circle at center, rgba(30,0,0,0.5) 0%, #000 100%);
+        }
+        #canvas-container {
+            width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1;
+        }
+        .hud {
+            position: absolute; top: 40px; left: 40px; z-index: 10;
+            pointer-events: none;
+        }
+        .w-logo {
+            font-size: 3rem; font-weight: 900; color: var(--w-red); 
+            line-height: 1; letter-spacing: -0.05em; text-shadow: 0 0 15px rgba(255, 51, 51, 0.6);
+            margin-bottom: 10px;
+        }
+        .title {
+            font-size: 1.2rem; letter-spacing: 0.3em; color: var(--w-cyan); text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 204, 255, 0.4);
+        }
+        .subtitle {
+            font-size: 0.8rem; color: #888; letter-spacing: 0.2em; margin-top: 5px;
+        }
+        .node-info {
+            position: absolute; bottom: 40px; right: 40px; width: 350px;
+            background: rgba(10,10,10,0.8); border: 1px solid rgba(0,204,255,0.2);
+            border-left: 3px solid var(--w-cyan); padding: 20px;
+            backdrop-filter: blur(10px); z-index: 10; display: none;
+            box-shadow: 0 0 20px rgba(0,204,255,0.1);
+        }
+        .node-name { font-size: 1.5rem; color: #fff; margin: 0 0 10px 0; letter-spacing: 0.1em; text-transform: uppercase; }
+        .node-desc { font-size: 0.9rem; color: #aaa; line-height: 1.4; }
+        .conn-list { margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; font-size: 0.8rem; color: #666; }
+        
+        .link { stroke: rgba(0,204,255,0.15); stroke-width: 1px; transition: stroke 0.3s; }
+        .link.active { stroke: var(--w-red); stroke-width: 2px; filter: drop-shadow(0 0 5px var(--w-red)); }
+        
+        .node circle { fill: #111; stroke: var(--w-cyan); stroke-width: 2px; transition: all 0.3s; cursor: pointer; }
+        .node:hover circle { fill: var(--w-cyan); filter: drop-shadow(0 0 10px var(--w-cyan)); }
+        .node.core circle { stroke: var(--w-red); stroke-width: 3px; r: 12; }
+        .node.core:hover circle { fill: var(--w-red); filter: drop-shadow(0 0 15px var(--w-red)); }
+        
+        .node text {
+            font-size: 10px; fill: #666; font-family: monospace;
+            pointer-events: none; text-shadow: 0 0 3px #000;
+        }
+        .node:hover text { fill: #fff; font-size: 12px; font-weight: bold; text-shadow: 0 0 5px var(--w-cyan); }
+        .node.core text { fill: #aaa; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="hud">
+        <div class="w-logo">W</div>
+        <div class="title">BRAINX // NEURAL MATRIX</div>
+        <div class="subtitle">TOPOLOGICAL PRODUCT INTERCONNECTIVITY</div>
+    </div>
+    
+    <div class="node-info" id="info-panel">
+        <h2 class="node-name" id="n-name">NODEX</h2>
+        <div class="node-desc" id="n-desc">Processing unit for topological Fecundity integration.</div>
+        <div class="conn-list" id="n-conn">Connected to: <br>None</div>
+    </div>
+
+    <svg id="canvas-container"></svg>
+
+    <script>
+        const products = [
+            "archx", "arx", "assetx", "auditx", "automation_core", "bishop", "brit", "catalogx", 
+            "chainx", "chen", "commissionx", "company_matrix", "construction_engine", "corpx", 
+            "crewx", "cryptox", "david", "dispatchx", "distributionx", "drillx", "enterprise", 
+            "estimatex", "extractorx", "fieldx", "flowx", "gigi", "graphx", "gridx", "hashx", 
+            "hazmatx", "huntx", "inspectx", "inventoryx", "leadx", "logisticsx", "maintx", 
+            "meetingx", "mesx", "mosmx", "mother", "multivac", "nova", "overwatchx", "permitx", 
+            "plantx", "planx", "platformx", "pricex", "projectx", "prometheus", "propx", "qtext", 
+            "qualityx", "reservoirx", "rigx", "ripley", "robotics_hub", "safetyx", "salesx", 
+            "satx", "scadax", "sentinelx", "sightx", "signalx", "sourcex", "stormx", "subx", 
+            "t3clx", "takeoffx", "treatx", "turbinex", "utilityx", "vaultx", "venturex", "wellx", 
+            "workx", "wright", "brainx"
+        ];
+
+        const coreNodes = ["automation_core", "mother", "multivac", "company_matrix", "brainx", "scadax", "robotics_hub", "platformx"];
+
+        // Generate synthetic graph data
+        const nodes = products.map(id => ({ 
+            id, 
+            group: coreNodes.includes(id) ? 1 : 2,
+            radius: coreNodes.includes(id) ? 12 : 6
+        }));
+
+        const links = [];
+        // Connect everyone loosely to the core nodes
+        products.forEach(p => {
+            if(!coreNodes.includes(p)) {
+                // Connect to 1-3 core nodes
+                let numCores = Math.floor(Math.random() * 3) + 1;
+                let usedCores = [];
+                for(let i=0; i<numCores; i++) {
+                    let core = coreNodes[Math.floor(Math.random() * coreNodes.length)];
+                    if(!usedCores.includes(core)) {
+                        links.push({ source: p, target: core, value: 2 });
+                        usedCores.push(core);
+                    }
+                }
+                // Connect to 1-2 random other nodes
+                let numRands = Math.floor(Math.random() * 2) + 1;
+                for(let i=0; i<numRands; i++) {
+                    let rand = products[Math.floor(Math.random() * products.length)];
+                    if(rand !== p) {
+                        links.push({ source: p, target: rand, value: 1 });
+                    }
+                }
+            }
+        });
+        
+        // Interconnect core nodes
+        for(let i=0; i<coreNodes.length; i++) {
+            for(let j=i+1; j<coreNodes.length; j++) {
+                if(Math.random() > 0.4) {
+                    links.push({ source: coreNodes[i], target: coreNodes[j], value: 5 });
+                }
+            }
+        }
+
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        const svg = d3.select("#canvas-container")
+            .attr("viewBox", [0, 0, width, height]);
+
+        const simulation = d3.forceSimulation(nodes)
+            .force("link", d3.forceLink(links).id(d => d.id).distance(d => d.value === 5 ? 200 : 100))
+            .force("charge", d3.forceManyBody().strength(-150))
+            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force("collide", d3.forceCollide().radius(d => d.radius + 10));
+
+        const link = svg.append("g")
+            .selectAll("line")
+            .data(links)
+            .join("line")
+            .attr("class", "link");
+
+        const node = svg.append("g")
+            .selectAll("g")
+            .data(nodes)
+            .join("g")
+            .attr("class", d => "node " + (d.group === 1 ? "core" : ""))
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+
+        node.append("circle")
+            .attr("r", d => d.radius);
+
+        node.append("text")
+            .attr("dx", 15)
+            .attr("dy", ".35em")
+            .text(d => d.id.toUpperCase());
+
+        const infoPanel = document.getElementById('info-panel');
+        const nName = document.getElementById('n-name');
+        const nDesc = document.getElementById('n-desc');
+        const nConn = document.getElementById('n-conn');
+
+        node.on("mouseover", function(event, d) {
+            // Highlight connections
+            link.classed("active", l => l.source.id === d.id || l.target.id === d.id);
+            
+            // Show HUD
+            infoPanel.style.display = "block";
+            nName.innerText = d.id.toUpperCase();
+            nDesc.innerText = coreNodes.includes(d.id) 
+                ? "Primary Sovereign Hub. Aggregates data from decentralized physical endpoints." 
+                : "Edge node. Executes physical extraction and feeds logical state into BrainX.";
+                
+            let connected = links.filter(l => l.source.id === d.id).map(l => l.target.id)
+                .concat(links.filter(l => l.target.id === d.id).map(l => l.source.id));
+            nConn.innerHTML = "UPLINKS TO:<br><span style='color:#00ccff;'>" + [...new Set(connected)].join(", ").toUpperCase() + "</span>";
+        });
+
+        svg.on("click", () => {
+            link.classed("active", false);
+            infoPanel.style.display = "none";
+        });
+
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node
+                .attr("transform", d => `translate(${d.x},${d.y})`);
+        });
+
+        function dragstarted(event) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            event.subject.fx = event.subject.x;
+            event.subject.fy = event.subject.y;
+        }
+
+        function dragged(event) {
+            event.subject.fx = event.x;
+            event.subject.fy = event.y;
+        }
+
+        function dragended(event) {
+            if (!event.active) simulation.alphaTarget(0);
+            event.subject.fx = null;
+            event.subject.fy = null;
+        }
+        
+        window.addEventListener('resize', () => {
+            svg.attr("viewBox", [0, 0, window.innerWidth, window.innerHeight]);
+            simulation.force("center", d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2));
+            simulation.alpha(0.3).restart();
+        });
+    </script>
+</body>
+</html>
